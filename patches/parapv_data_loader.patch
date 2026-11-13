@@ -1,0 +1,23 @@
+--- a/data_provider/data_loader.py
++++ b/data_provider/data_loader.py
+@@ -16,6 +16,9 @@
+ 
+ 
+ def read_pv_file(file_path):
++    # [PhysAdapt comparison patch] read the rolling-fold CSV prepared by pvfm/parapv.py instead of the Excel file
++    if os.environ.get('PARAPV_CSV'):
++        return pd.read_csv(os.environ['PARAPV_CSV'])
+     ext = os.path.splitext(file_path)[1].lower()
+     if ext in ['.xlsx', '.xls']:
+         return pd.read_excel(file_path)
+@@ -97,6 +100,10 @@
+         num_vali = len(df_raw) - num_train - num_test
+         border1s = [0, num_train - self.seq_len, len(df_raw) - num_test - self.seq_len]
+         border2s = [num_train, num_train + num_vali, len(df_raw)]
++        if os.environ.get('PARAPV_BORDERS'):  # [PhysAdapt comparison patch] rolling-fold boundaries: train end, validation end
++            tr_end, va_end = [int(v) for v in os.environ['PARAPV_BORDERS'].split(',')]
++            border1s = [0, tr_end - self.seq_len, va_end - self.seq_len]
++            border2s = [tr_end, va_end, len(df_raw)]
+         border1 = border1s[self.set_type]
+         border2 = border2s[self.set_type]
+ 

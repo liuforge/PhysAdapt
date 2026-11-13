@@ -1,0 +1,8 @@
+numpy>=1.26
+pandas>=2.1
+openpyxl>=3.1
+scikit-learn>=1.3
+lightgbm>=4.0
+torch>=2.3
+chronos-forecasting==2.3.2
+# optional, only for the portability study (fm_multi.py): timesfm, toto-ts, uni2ts, tirex-ts, transformers
