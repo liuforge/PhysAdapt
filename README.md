@@ -1,6 +1,6 @@
 # PhysAdapt
 
-Code for **"Physics-consistent adaptation of frozen time-series foundation models for ultra-short-term probabilistic
+Code for **"PhysAdapt: Physics-consistent adaptation of frozen time-series foundation models for ultra-short-term probabilistic
 photovoltaic forecasting under dispatch-following operation"** (J. Liu, C. Peng, K. Zou, P. Huang, A. C. Tsoi;
 submitted to *Renewable Energy*).
 
